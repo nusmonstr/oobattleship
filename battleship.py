@@ -1,14 +1,14 @@
-from copy import deepcopy
 
 ship_dict = {
-    'Carrier':5,
-    'Battleship':4,
-    'Cruiser':3,
-    'Submarine':3,
-    'Destroyer':2}
+    'Carrier': 5,
+    'Battleship': 4,
+    'Cruiser': 3,
+    'Submarine': 3,
+    'Destroyer': 2}
 
 ship_dict = {
     'Tugboat': 2}
+
 
 def cartesian_to_alphanum(numeric_tuple):
     row, column = numeric_tuple
@@ -16,12 +16,14 @@ def cartesian_to_alphanum(numeric_tuple):
     column = str(column + 1)
     return row+column
 
+
 def alphanum_to_cartesian(string_pair):
     row = ord(string_pair[0]) - 65
     column = int(string_pair[1:]) - 1
-    return (row, column)
+    return row, column
 
-class Ship():
+
+class Ship:
     def __init__(self, title, length):
         self.orientation = ''  # 'ns' or 'ew'
         self.position = (0, 0)
@@ -31,7 +33,7 @@ class Ship():
         self.health = length + 0
 
 
-class Player():
+class Player:
     def __init__(self, player_id, default_fleet):
         self.id = player_id
         self.ships = []
@@ -44,7 +46,7 @@ class Player():
             print('\t{} {} {}'.format(ship.title, ship.orientation, ship.position))
 
 
-class Game():
+class Game:
     def __init__(self, map_size, player_count, default_fleet):
         self.map_size = map_size
         self.maps = {1: [['[ ]' for x in range(map_size)] for x in range(map_size)], 2: [['[ ]' for x in range(map_size)] for x in range(map_size)]}
@@ -69,10 +71,12 @@ class Game():
                         row_to_print = row
                     print(' '.join([next(row_labels)]+row_to_print))
 
-class Map():
+
+class Map:
     def __init__(self, size):
         self.size = size
         self.locations = [(x, y) for x in range(size) for y in range(size)]
+
 
 def play():
     # Start a new game
@@ -170,3 +174,6 @@ def play():
 
 
 play()
+
+# Each player assigns orientation and position to each ship in their fleet
+# Each player takes turns choosing a position on the opponent's map to strike
